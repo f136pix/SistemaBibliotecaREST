@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 app.get("/", (req, res) => {
-    res.json({ message: "OLA" });
+    res.render("");
   });
 
 // router trata de req para root/api/tutoriais

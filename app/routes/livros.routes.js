@@ -12,7 +12,7 @@ module.exports = app => {
     // criando um novo livro
     router.post("/criar",livrosController.criarLivros)
 
-    // definindo que https para root/api/tutoriais sejam tratadas pelo router 
+    // definindo que https para root/api/tutoriais sejam tratadas pelo router
     app.use('/api/tutoriais', router);
 
 
