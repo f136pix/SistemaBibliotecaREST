@@ -1,49 +1,61 @@
-const config = require("../config/db.config")
+// importando os services
+const service = require("../service/livrosService")
 
-// nosso banco
-const db = config.db
-
-// salvando a collections "livros"
-const livrosRef = db.collection('livros');
-
-// puxando todos os livros
+// GET root/api/{query}
 exports.titulosLivros = async (req, res) => {
   try {
-    const collection = await livrosRef.get();
-    if (!collection.empty) {  // verificando se a collection esta vazia
-      collection.forEach(doc => {
-        console.log(doc.id, '=>', doc.data());
-      });
-    }
-    else {
-      console.log("Não há nenhum livro na coleção")
-      return
-    }
-  } catch (err) {
-    res.status(500).send({ message: err.message || "Houve um erro ao filtrar os Livros" })
+    const livros = await service.getLivros(req.query.titulo);
+    res.status(200).json({ livros });
   }
-}
+  catch (err) {
+    if (err.statusCode === 404) {
+      res.status(404).json({ message: err.message }); 
+    } else {
+        console.error(err); // exibindo o erro para debugging
+        res.status(500).json({ message: err.message || "Houve um erro ao filtrar os Livros" });
+      }
+    }
+  };
 
-// criando um novo livro
-exports.criarLivros = async (req, res) => {
-  try {
-    const novoLivro = {
-      titulo: req.body.titulo,
-      autor: req.body.autor,
-      ano: req.body.ano,
-      emprestado: false
-    };
-
-    const docRef = await livrosRef.add(novoLivro);
-    console.log(docRef.id);
-
-    // enviando resposta ao client
-    res.send({ message: "Livro criado com sucesso! ID : " + docRef.id });
-  } catch (error) {
-    console.error("Erro ao criar o livro:", error);
-    // avisando possiveis erros
-    res.status(500).send({ error: "Erro ao criar o livro" });
+  
+  // GET roor/api/{id}
+  exports.livroPorId = async(req, res) => {
+    try{
+      const id = req.params.id;
+      const livro = await service.getById(id)
+      res.status(200).json({ livro })
+    } catch (err) {
+      if (err.statusCode == 404) {
+        res.status(404).json({ message: err.message });
+      } else {
+      res.status(500).json({ message: err.message || "Nenhum livro com este Id foi encontrado" })
+      }
+    }
   }
-}
 
+  // POST root/api/criar  
+  exports.criarLivros = async (req, res) => {
+    try {
+      const livroCriado = await service.criarLivros(req);
+      res.status(200).json({ livroCriado })
+    } catch (err) {
+      if (err.statusCode == 400) {
+        res.status(400).json({ message : err.message })
+      } else {
+        console.error(err)
+        res.status(500).json({ message : err.message || "Houve um erro ao registrar o livro, tente novamente mais tarde" })
+      }
+    }
+  }
 
+  // DELETE root/api/id
+  exports.deletarLivro = async (req, res) => {
+    try {
+      const id = req.params.id;
+      await service.deletarLivros(id)
+      res.status(204).json()
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ message : err.message || "Houve um erro ao deletar o livro, tente novamente mais tarde" })
+    }
+  }

@@ -1,5 +1,6 @@
 // importando as libs
 const express = require("express")
+const bodyParser = require("body-parser");
 
 // importando as configs do db
 const config = require("./app/config/db.config")
@@ -9,6 +10,9 @@ const app = express()
 // parses do express
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// parse do body parser
+app.use(bodyParser.json());
 
 // conectando ao css
 app.use(express.static(__dirname + '/public'));

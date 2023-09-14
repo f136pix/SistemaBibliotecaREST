@@ -6,14 +6,15 @@ module.exports = app => {
     // express router
     var router = require("express").Router();
 
-    // pegando todos os livros
     router.get("/",livrosController.titulosLivros)
 
-    // criando um novo livro
+    router.get("/:id",livrosController.livroPorId)
+
     router.post("/criar",livrosController.criarLivros)
 
+    router.delete("/:id",livrosController.deletarLivro)
     // definindo que https para root/api/tutoriais sejam tratadas pelo router
-    app.use('/api/tutoriais', router);
+    app.use('/api', router);
 
 
 }
