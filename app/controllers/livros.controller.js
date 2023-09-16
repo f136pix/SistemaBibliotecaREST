@@ -1,5 +1,5 @@
 // importando os services
-const service = require("../service/livrosService")
+const service = require("../service/livros.service")
 
 // GET root/api/{query}
 exports.titulosLivros = async (req, res) => {
@@ -55,7 +55,10 @@ exports.titulosLivros = async (req, res) => {
       await service.deletarLivros(id)
       res.status(204).json()
     } catch (err) {
-      console.error(err)
+      if(err.statusCode == 404) {
+        res.status(404).json({message : err.msg})
+      } else {
       res.status(500).json({ message : err.message || "Houve um erro ao deletar o livro, tente novamente mais tarde" })
+      }
     }
   }

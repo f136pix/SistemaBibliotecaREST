@@ -42,7 +42,6 @@ exports.getById = async (id) => {
     try {
 
         const doc = await livrosRef.doc(id).get()
-
         const data = doc.data();
 
         if (!data) {
@@ -75,7 +74,7 @@ exports.criarLivros = async (req) => {
 
 
     // verificando se um livro com o mesmo nome ja existe
-    collection = await livrosRef.where("nome", "==", novoLivro.nome).get()
+    const collection = await livrosRef.where("nome", "==", novoLivro.nome).get()
 
     if (!collection.empty) {
         const error = new Error("Já há um livro com este titulo")

@@ -1,9 +1,7 @@
 // importando as libs
 const express = require("express")
 const bodyParser = require("body-parser");
-
-// importando as configs do db
-const config = require("./app/config/db.config")
+const ejs = require('ejs');
 
 const app = express()
 
@@ -14,16 +12,16 @@ app.use(express.urlencoded({ extended: true }));
 // parse do body parser
 app.use(bodyParser.json());
 
-// conectando ao css
+// pasta onde estao os css
 app.use(express.static(__dirname + '/public'));
 
-app.get("/", (req, res) => {
-    res.render("");
-  });
+// setando o uso do ejs
+app.set('view engine', 'ejs');
 
-// router trata de req para root/api/tutoriais
+// routers
+require("./app/routes/app.routes")(app)
 require("./app/routes/livros.routes")(app)
-
+require("./app/routes/user.routes")(app)
 // abrindo o localhost 8080
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
