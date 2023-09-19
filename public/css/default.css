@@ -1,3 +1,85 @@
 body {
-    font-family: 'Lato', sans-serif;
-  }
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  background: linear-gradient(90deg, #eeec6f 0%, #eceba2 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #000;
+}
+
+.header-section {
+  margin-top: 8rem;
+  margin-bottom: 6rem;
+  min-height: 700px;
+}
+
+.navbar-brand{
+  color: #000;
+}
+
+navbar-brand-yellow{
+  color:#eeec6f
+}
+
+.navbar-collapse{
+  margin-left: 30rem;
+}
+
+.section-title {
+  letter-spacing: 0.1rem;
+}
+
+.main-header-text {
+  font-size: 2.9rem;
+  font-weight: bold;
+  letter-spacing: 0.15rem;
+}
+
+.section {
+  margin-bottom: 6rem;
+  min-height: 300px;
+}
+
+.header-img {
+  max-height: 200px;
+}
+
+.navbar-brand{
+  font-size: 2.5rem;
+}
+
+.section-img {
+  max-height: 200px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #000;
+  margin-left: 0.6rem;
+  margin-right: 0.6rem;
+}
+
+.navbar-dark:hover .navbar-nav:hover .nav-link:hover {
+  color: #000;
+}
+
+.footer {
+  color: #fff;
+  padding-bottom: 4rem;
+  width: 100%;
+  align-items: center
+}
+
+.footer-text{
+  font: bold;
+  margin-top: 4rem;
+}
+
+.footer-git{
+  color:#fff ;
+  text-decoration: none;
+}
+
+  
