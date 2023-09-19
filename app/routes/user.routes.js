@@ -6,6 +6,8 @@ module.exports = app => {
     // express router
     var router = require("express").Router();
 
+    router.get("/login",userController.loginPage)
+
     router.get("/",userController.nomeUsers)
 
     router.get("/:id",userController.userPorId)

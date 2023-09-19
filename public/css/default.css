@@ -12,9 +12,9 @@ body {
 
 .header-section {
   margin-top: 8rem;
-  margin-bottom: 6rem;
   min-height: 700px;
 }
+
 
 .navbar-brand{
   color: #000;
@@ -64,6 +64,94 @@ navbar-brand-yellow{
 .navbar-dark:hover .navbar-nav:hover .nav-link:hover {
   color: #000;
 }
+
+.text-right {
+  text-align: right;
+  margin-right: 0%;
+}
+
+.clearfix {
+  clear: both;
+  }
+  
+  #contact-cta-section {
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    float: left;
+    width: 100%;
+    text-align: center; 
+    }
+
+  .wrapper-full {
+  position: relative;
+  width: 1050px;
+  margin: 0 auto;
+  }
+  .cta-wrapper {
+  margin-bottom: 0;
+  text-align: left;
+  padding: 28px;
+  background-color: #3686BE;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  }
+  .cta-wrapper .details-wrapper {
+  float: left;
+  width: 60%;
+  }
+  .cta-wrapper .details-wrapper h2 {
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #FFF;
+  font-size: 27px;
+  }
+  .cta-wrapper .details-wrapper p {
+  font-size: 18px;
+  color: #FFF;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  .cta-wrapper .blue-cta-button {
+  padding: 17px 50px;
+  text-transform: uppercase;
+  background-color: #93CC76;
+  letter-spacing: 0.1em;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  white-space: pre;
+  margin: 31px 0 25px 0;  
+  float: right;
+  margin: 0;
+  color: #000;
+  background-color: #FFF;
+  padding: 17px 0;
+  width: 40%;
+  text-align: center;
+  }
+    
+  .last-container{
+    margin-bottom: 1rem;
+  }
 
 .footer {
   color: #fff;

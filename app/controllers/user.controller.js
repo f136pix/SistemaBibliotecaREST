@@ -1,6 +1,10 @@
 // importando os services
 const service = require("../service/user.service")
 
+exports.loginPage = async (req, res) => {
+  res.render("login")
+}
+
 // GET root/api/{query}
 exports.nomeUsers = async (req, res) => {
   try {
