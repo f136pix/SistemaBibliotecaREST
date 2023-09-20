@@ -8,6 +8,8 @@ module.exports = app => {
 
     router.get("/login",userController.loginPage)
 
+    router.get("/register",userController.registerPage)
+
     router.get("/",userController.nomeUsers)
 
     router.get("/:id",userController.userPorId)

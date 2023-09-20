@@ -1,6 +1,23 @@
-<%- include ('partials/header') %>
 <%- include ('partials/head') %>
+<link rel="stylesheet" href="/css/login.css">
+</head>
 
+<%- include ('partials/header') %>
+
+<div class="container-form">
+    <div class="form-container" id="login-form">
+      <h1 class="text-light">Login</h1>
+      <form>
+        <label for="username">Email</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit" class="text-dark">Login</button>
+      </form>
+      <p>Não tem uma conta? <a href="#" id="signup-link" class="text-sign-up">Registre-se</a></p>
+      <p class="esqueci-senha-text text-decoration-underline"> <a href="/user/register" class="text-light">ESQUECI MINHA SENHA</a></p>
+    </div>
+</div>
 
 
 <%- include ('partials/footer') %>
