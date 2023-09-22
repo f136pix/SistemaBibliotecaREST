@@ -1,12 +1,52 @@
-// importando os services
-const service = require("../service/user.service")
+const service = require("../service/user.service");
 
+const REDIRECT_LOGIN = "/user/login";
+const REDIRECT_REGISTER = "/user/register";
+
+
+// GET /login
 exports.loginPage = async (req, res) => {
-  res.render("login")
+  const { error, success } = req.session;
+  req.session.error = "";
+  req.session.success = "";
+  res.render('login', { error, success });
 }
 
+// POST /login
+exports.loginAuthentication = async (req, res) => {
+  try{
+  const user = await service.authenticateUser(req.body)
+  req.session.userId = user.uid; 
+  res.redirect("/dashboard")
+} catch (err) {
+  req.session.error = err.message;
+  res.redirect(REDIRECT_LOGIN)
+  console.log(err)
+}
+}
+
+// GET /register
 exports.registerPage = async (req, res) => {
-  res.render("register")
+  const { error } = req.session;
+  req.session.error = "";
+  req.session.success = "";
+  res.render("register", { error, success: "" });
+}
+
+
+// POST /registrar
+exports.registerUser = async (req, res) => {
+  try {
+    await service.registerUser(req.body);
+    req.session.error = "";
+    req.session.success = "Usuario Cadastrado com Sucesso";
+    res.redirect(REDIRECT_LOGIN);
+  } catch (err) {
+    req.session.error = err.message;
+    req.session.success = "";
+    res.redirect(REDIRECT_REGISTER);
+    console.error(err);
+  }
 }
 
 // GET root/api/{query}

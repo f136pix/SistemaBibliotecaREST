@@ -7,14 +7,16 @@
 <div class="container-form">
     <div class="form-container" id="login-form">
       <h1 class="text-light">Login</h1>
-      <form>
-        <label for="username">Email</label>
-        <input type="text" id="username" name="username" required>
+      <form method="post" action="/user/login">
+        <label for="email">Email</label>
+        <input type="text" id="username" name="email" required>
         <label for="password">Senha</label>
         <input type="password" id="password" name="password" required>
+        <div class="error-content text-danger"> <p><%= error %></p> </div>
+        <div class="error-content text-success"> <p><%= success %></p> </div>
         <button type="submit" class="text-dark">Login</button>
       </form>
-      <p>Não tem uma conta? <a href="#" id="signup-link" class="text-sign-up">Registre-se</a></p>
+      <p>Não tem uma conta? <a href="/user/register" id="signup-link" class="text-sign-up">Registre-se</a></p>
       <p class="esqueci-senha-text text-decoration-underline"> <a href="/user/register" class="text-light">ESQUECI MINHA SENHA</a></p>
     </div>
 </div>

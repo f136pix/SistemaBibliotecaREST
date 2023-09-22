@@ -1,7 +1,37 @@
 <%- include ('partials/head') %>
+<link rel="stylesheet" href="/css/login.css">
 <link rel="stylesheet" href="/css/register.css">
 </head>
+
 <%- include ('partials/header') %>
+
+<div class="container-form">
+    <div class="form-container" id="login-form">
+      <h1 class="text-light">Registrar-me</h1>
+      <form method="post" action="/user/register">
+        <div class="row">
+          <div class="col">
+          <label for="nome">Nome</label>
+          <input type="text" id="username" name="nome" required>
+          </div>
+          <div class="col">
+          <label for="sobrenome">Sobrenome</label>
+          <input type="text" id="username" name="sobrenome" required>
+          </div>
+        </div>
+        <label for="email">Email</label>
+        <input type="text" id="username" name="email" required>
+          
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" required>
+        <input type="passwordConfirm" id="password" name="passwordConfirm" placeholder="Confirme sua senha" required>
+
+        <div class="error-content text-danger"> <p><%= error %></p> </div>
+        <button type="submit" class="text-dark">Registrar</button>
+      </form>
+      <p>Já possui uma conta ? <a href="/user/login" id="signup-link" class="text-sign-up">Faça Login</a></p>
+    </div>
+</div>
 
 
 <%- include ('partials/footer') %>

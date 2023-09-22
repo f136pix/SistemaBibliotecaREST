@@ -2,8 +2,16 @@
 const express = require("express")
 const bodyParser = require("body-parser");
 const ejs = require('ejs');
+var session = require('express-session')
+
 
 const app = express()
+
+app.use(session({
+  secret: 'key',
+  resave: false,
+  saveUninitialized: true,
+}));
 
 // parses do express
 app.use(express.json());

@@ -1,8 +1,10 @@
-const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+const { initializeApp, cert } = require('firebase-admin/app');
+const { getFirestore} = require('firebase-admin/firestore');
+const { admin, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } = require('firebase-admin/auth');
+
 
   // inicializando o app com a service key    
-  exports.app = initializeApp({
+  exports.admin = initializeApp({
     credential: cert({
       "type": "service_account",
       "project_id": "sistema-biblioteca-f7b97",
@@ -18,13 +20,11 @@ const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestor
     })
   });
 
+    // auth service
+    exports.auth = getAuth();
+
     // esse é nosso banco do firestore
     exports.db = getFirestore();
 
     
- 
-
-
-    
-
     
