@@ -13,7 +13,7 @@ module.exports = app => {
     router.post("/criar",livrosController.criarLivros)
 
     router.delete("/:id",livrosController.deletarLivro)
-    // definindo que https para root/api/tutoriais sejam tratadas pelo router
+    // definindo que https para root/livros sejam tratadas pelo router
     app.use('/livros', router);
 
 

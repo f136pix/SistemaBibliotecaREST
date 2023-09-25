@@ -1,13 +1,8 @@
-const config = require("../config/db.config");
+const { db } = require('../config/db.config');
+const livrosRef = db.collection('livros');
 
 // lodash usado para formatar os dados
 var _ = require('lodash');
-
-// nosso banco
-const db = config.db;
-
-// salvando a collections "livros"
-const livrosRef = db.collection('livros');
 
 
 // GET /api/{q}

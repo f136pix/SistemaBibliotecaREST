@@ -42,7 +42,7 @@ exports.registerUser = async (req, res) => {
     req.session.success = "Usuario Cadastrado com Sucesso";
     res.redirect(REDIRECT_LOGIN);
   } catch (err) {
-    req.session.error = err.message;
+    req.session.error = err.message || err;
     req.session.success = "";
     res.redirect(REDIRECT_REGISTER);
     console.error(err);

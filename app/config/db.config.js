@@ -1,10 +1,31 @@
-const { initializeApp, cert } = require('firebase-admin/app');
 const { getFirestore} = require('firebase-admin/firestore');
-const { admin, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } = require('firebase-admin/auth');
+const { initializeApp: initializeAdminApp, cert } = require('firebase-admin/app');
+const { initializeApp: initializeWebApp } = require('firebase/app');
+const { getAuth } = require("firebase/auth");
 
 
-  // inicializando o app com a service key    
-  exports.admin = initializeApp({
+const firebaseConfig = {
+  apiKey: "AIzaSyB--oT3erJR37cgJzoRq-nKaVaRcEOn08U",
+  authDomain: "sistema-biblioteca-f7b97.firebaseapp.com",
+  projectId: "sistema-biblioteca-f7b97",
+  storageBucket: "sistema-biblioteca-f7b97.appspot.com",
+  messagingSenderId: "332984970073",
+  appId: "1:332984970073:web:47aa679b89b66522d2ba48",
+  measurementId: "G-W17Y50K70V"
+};
+
+// inicializando o webapp (ultilizado para auth)
+const firebaseWebApp = initializeWebApp(firebaseConfig, 'web-app');
+
+// auth firebase adm
+const auth = getAuth(firebaseWebApp);
+
+
+module.exports = firebaseWebApp;
+
+
+  // inicializando o sdk com a service key    
+  const admin = initializeAdminApp({
     credential: cert({
       "type": "service_account",
       "project_id": "sistema-biblioteca-f7b97",
@@ -20,11 +41,9 @@ const { admin, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPasswo
     })
   });
 
-    // auth service
-    exports.auth = getAuth();
-
     // esse é nosso banco do firestore
-    exports.db = getFirestore();
+    const db = getFirestore();
 
+    module.exports = { admin, db, auth };
     
     
