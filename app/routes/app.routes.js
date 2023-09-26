@@ -1,3 +1,4 @@
+const appController = require("../controllers/app.controller");
 module.exports = app => {
 
     // controllers
@@ -6,10 +7,11 @@ module.exports = app => {
     // express router
     var router = require("express").Router();
 
-    router.get("/",appController.index)
+    router.get("/home",appController.index)
 
+    router.get("/",appController.home)
     // definindo que https para root/app sejam tratadas pelo router
-    app.use('/app', router);
+    app.use('/', router);
 
 
 }
