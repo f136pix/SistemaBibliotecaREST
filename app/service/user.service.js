@@ -16,6 +16,11 @@ exports.authenticateUser = async (data) => {
 }
 
 exports.registerUser = async (data) => {
+    if (data.passwordConfirm !== data.password) {
+        const error = new Error("As senhas inseridas devem ser iguais")
+        error.statusCode = 400;
+        throw error;
+    }
     await createUserWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
             const user = userCredential.user;

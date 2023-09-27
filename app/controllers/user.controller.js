@@ -3,7 +3,8 @@ const {AuthErrorCodes} = require('firebase/auth');
 
 const REDIRECT_LOGIN = "/user/login";
 const REDIRECT_REGISTER = "/user/register";
-const REDIRECT_RECUPERAR = "/user/recuperar"
+const REDIRECT_RECUPERAR = "/user/recuperar";
+const REDIRECT_DASHBOARD = "/app/dashboard";
 
 
 // GET /login
@@ -19,7 +20,7 @@ exports.loginAuthentication = async (req, res) => {
     try {
         const user = await service.authenticateUser(req.body)
         console.log(user)
-        res.redirect("/dashboard")
+        res.redirect(REDIRECT_DASHBOARD)
     } catch (err) {
         if (err.code === AuthErrorCodes.INVALID_EMAIL) {
             req.session.error = "Endereço de email invalido"
@@ -80,6 +81,11 @@ exports.registerUser = async (req, res) => {
             req.session.success = "";
             res.redirect(REDIRECT_REGISTER);
             return
+        }
+        if (err.statusCode === 400) {
+            req.session.error = "As senhas devem coincidir";
+            req.session.sucess = "";
+            res.redirect(REDIRECT_REGISTER);
         } else {
             req.session.error = err.message || err;
             req.session.success = "";
