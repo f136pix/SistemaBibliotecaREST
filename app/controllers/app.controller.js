@@ -1,11 +1,3 @@
-// importando os services
-//const service = require("../service/appService")
-
-// GET root/api/{query}
-exports.index = async (req, res) => {
-    res.render("index")
-}
-
-exports.home = async (req, res) => {
-    res.redirect("/home")
+exports.dashboard = async(req, res) => {
+    res.render("dashboard")
 }

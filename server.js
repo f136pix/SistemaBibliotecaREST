@@ -28,6 +28,7 @@ app.set('view engine', 'ejs');
 
 // routers
 require("./app/routes/app.routes")(app)
+require("./app/routes/home.routes")(app)
 require("./app/routes/livros.routes")(app)
 require("./app/routes/user.routes")(app)
 // abrindo o localhost 8080

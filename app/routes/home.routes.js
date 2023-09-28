@@ -1,16 +1,16 @@
 module.exports = app => {
 
     // controllers
-    const appController = require("../controllers/app.controller");
+    const homeController = require("../controllers/home.controller");
 
     // express router
     var router = require("express").Router();
 
-    router.get("/dashboard",appController.dashboard)
+    router.get("/home",homeController.index)
 
-    
+    router.get("/",homeController.home)
     // definindo que https para root/app sejam tratadas pelo router
-    app.use('/app', router);
+    app.use('/', router);
 
 
 }
