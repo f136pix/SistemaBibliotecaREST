@@ -19,7 +19,8 @@ exports.loginPage = async (req, res) => {
 exports.loginAuthentication = async (req, res) => {
     try {
         const user = await service.authenticateUser(req.body)
-        console.log(user)
+        req.session.user = user
+        
         res.redirect(REDIRECT_DASHBOARD)
     } catch (err) {
         if (err.code === AuthErrorCodes.INVALID_EMAIL) {

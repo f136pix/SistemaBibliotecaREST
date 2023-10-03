@@ -9,10 +9,12 @@ var _ = require("lodash");
 const {FirebaseError} = require('firebase/app');
 
 exports.authenticateUser = async (data) => {
+    let user = " "
     await signInWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
-            return userCredential.user;
+            user = userCredential.user;
         })
+    return user
 }
 
 exports.registerUser = async (data) => {
@@ -29,7 +31,7 @@ exports.registerUser = async (data) => {
                 nome: data.nome + " " + data.sobrenome,
                 email: data.email
             })
-            console.log("Usuario criado:", user);
+            console.log("Usuario criado : ", user);
         })
 }
 

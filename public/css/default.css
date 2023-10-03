@@ -11,10 +11,9 @@ body {
 }
 
 .header-section {
-  margin-top: 8rem;
+  margin-top: 0rem;
   min-height: 700px;
 }
-
 
 .navbar-brand{
   color: #000;

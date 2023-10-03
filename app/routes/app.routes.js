@@ -1,3 +1,6 @@
+const session = require('express-session');
+const authenticate = require("../middleware/authenticate");
+
 module.exports = app => {
 
     // controllers
@@ -5,6 +8,15 @@ module.exports = app => {
 
     // express router
     var router = require("express").Router();
+
+    app.use(session({
+        secret: 'system-154391',
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure: false } // Adjust this for production, consider using HTTPS
+      }));
+      
+    router.use(authenticate)
 
     router.get("/dashboard",appController.dashboard)
 

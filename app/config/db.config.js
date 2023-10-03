@@ -20,7 +20,6 @@ const firebaseWebApp = initializeWebApp(firebaseConfig, 'web-app');
 // auth firebase adm
 const auth = getAuth(firebaseWebApp);
 
-
 module.exports = firebaseWebApp;
 
 
