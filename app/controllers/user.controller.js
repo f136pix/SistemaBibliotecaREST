@@ -1,5 +1,6 @@
 const service = require("../service/user.service");
 const {AuthErrorCodes} = require('firebase/auth');
+// const firebase = require("firebase/compat");
 
 const REDIRECT_LOGIN = "/user/login";
 const REDIRECT_REGISTER = "/user/register";
@@ -18,8 +19,8 @@ exports.loginPage = async (req, res) => {
 // POST /login
 exports.loginAuthentication = async (req, res) => {
     try {
-        const user = await service.authenticateUser(req.body)
-        req.session.user = user
+        const token = await service.authenticateUser(req.body)
+        req.session.idToken = `Bearer ${token}`;
         
         res.redirect(REDIRECT_DASHBOARD)
     } catch (err) {

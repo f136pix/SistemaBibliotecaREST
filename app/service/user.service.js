@@ -6,15 +6,18 @@ const {auth} = require('../config/db.config');
 
 // lodash usado para formatar os dados
 var _ = require("lodash");
-const {FirebaseError} = require('firebase/app');
+
 
 exports.authenticateUser = async (data) => {
     let user = " "
+    let userToken = " "
     await signInWithEmailAndPassword(auth, data.email, data.password)
-        .then((userCredential) => {
+        .then(async (userCredential) => {
             user = userCredential.user;
+            userToken = await user.getIdToken();
+            return userToken
         })
-    return user
+    return userToken
 }
 
 exports.registerUser = async (data) => {

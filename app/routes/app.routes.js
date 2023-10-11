@@ -13,7 +13,7 @@ module.exports = app => {
         secret: 'system-154391',
         resave: false,
         saveUninitialized: true,
-        cookie: { secure: false } // Adjust this for production, consider using HTTPS
+        cookie: { secure: false } 
       }));
       
     router.use(authenticate)

@@ -1,31 +1,35 @@
 const {admin} = require("../config/db.config")
+const {getAuth} = require("firebase-admin/auth");
+const REDIRECT_LOGIN = "/user/login";
 
 function authenticate(req, res, next) {
- 
-console.log("teste")
- const token = req.session.user
 
- console.log(token)
+    let header = req.session.idToken
 
- if (!token) {
-  res.statusMessage = 'Token Invalido, acesso negado'
-  return res.status(401).send('Token Invalido, acesso negado')
- }
- 
-//reference => https://firebase.google.com/docs/auth/admin/manage-sessions
- 
- admin.auth().verifyIdToken(token)
-  .then(function (decodedToken) {
- 
-   // enviando uid ao body para uso do route
-   req.headers.uid = decodedToken.uid;
-   next();
-  })
-  .catch(function (error) {
-   console.log(error);
-   res.status(401).send('Unauthorized token. Access Denied')
-  });
- 
+    try {
+        const token = header.substring(7, header.length);
+
+        if (!header || !header.startsWith("Bearer ")) {
+            res.redirect(REDIRECT_LOGIN)
+        }
+
+        getAuth()
+            .verifyIdToken(token)
+            .then((decodedToken) => {
+                console.log("Token autorizado")
+                const uid = decodedToken.uid;
+                next();
+            })
+            .catch((error) => {
+                console.log(error)
+                res.redirect(REDIRECT_LOGIN)
+            });
+
+        next();
+    } catch (err) {
+        res.redirect(REDIRECT_LOGIN)
+    }
 }
 
+//reference => https://firebase.google.com/docs/auth/admin/manage-sessions
 module.exports = authenticate;
