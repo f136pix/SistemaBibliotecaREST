@@ -1,6 +1,7 @@
 const service = require("../service/user.service");
 const {AuthErrorCodes} = require('firebase/auth');
 // const firebase = require("firebase/compat");
+const session = require('express-session')
 
 const REDIRECT_LOGIN = "/user/login";
 const REDIRECT_REGISTER = "/user/register";
@@ -21,7 +22,7 @@ exports.loginAuthentication = async (req, res) => {
     try {
         const token = await service.authenticateUser(req.body)
         req.session.idToken = `Bearer ${token}`;
-        
+
         res.redirect(REDIRECT_DASHBOARD)
     } catch (err) {
         if (err.code === AuthErrorCodes.INVALID_EMAIL) {
@@ -97,7 +98,7 @@ exports.registerUser = async (req, res) => {
     }
 }
 
-// GET recuperarSenha
+// GET /recuperar
 exports.recuperarSenha = async (req, res) => {
     const {error, success} = req.session;
     req.session.error = "";
@@ -179,4 +180,16 @@ exports.deletarUser = async (req, res) => {
         }
     }
 }
+
+// POST root/logout
+exports.logout = async (req, res) => {
+     try {
+        await req.session.destroy();
+        res.redirect(REDIRECT_DASHBOARD) // middlewere tratara da sessão destroyed
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+
 

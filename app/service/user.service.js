@@ -38,6 +38,9 @@ exports.registerUser = async (data) => {
         })
 }
 
+exports.logoutSession = async() => {
+
+}
 
 
 exports.sendEmailPassword = async (data) => {

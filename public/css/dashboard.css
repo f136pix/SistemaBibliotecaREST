@@ -1,0 +1,14 @@
+.nav-dashboard {
+    color: var(--white-color);
+    display: block;
+}
+
+.nav-dashboard::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 2px;
+    height: 32px;
+    background-color: var(--white-color)
+}
+

@@ -7,16 +7,27 @@
     <nav class="nav">
         <div><a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">BBBootstrap</span>
             </a>
-            <div class="nav_list"><a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span
-                            class="nav_name">Dashboard</span> </a> <a href="#" class="nav_link"> <i
-                            class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a> <a href="#"
-                                                                                                         class="nav_link">
-                    <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Messages</span> </a> <a
-                        href="#" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Bookmark</span>
-                </a> <a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span
-                            class="nav_name">Files</span> </a> <a href="#" class="nav_link"> <i
-                            class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Stats</span> </a></div>
+            <div class="nav_list">
+                <a href="#" class="nav_link nav-dashboard active"> <i class='bx bx-grid-alt nav_icon'></i><span class="nav_name">Dashboard</span> </a>
+                <a href="#" class="nav_link nav-users"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a>
+                <a href="#" class="nav_link nav-message"><i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Messages</span> </a>
+                <a href="#" class="nav_link nav-bookmark"> <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name ">Bookmark</span></a>
+                <a href="#" class="nav_link nav-file"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name" >Files</span> </a>
+                <a href="#" class="nav_link nav-stats"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name ">Stats</span> </a>
+            </div>
         </div>
-        <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
+        <form method="post" action="/user/logout"><a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i>
+                <button type="submit" class="logout-component">
+                    <h1>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="currentColor"
+                             class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                            <path fill-rule="evenodd"
+                                  d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                        </svg>
+                    </h1>
+                </button>
+            </a></form>
     </nav>
 </div>
