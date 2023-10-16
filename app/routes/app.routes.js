@@ -18,7 +18,11 @@ module.exports = app => {
       
     router.use(authenticate)
 
-    router.get("/dashboard",appController.dashboard)
+    router.get("/dashboard",appController.dashboard);
+
+    router.get("/dashboard/:uid",appController.dashboardId);
+
+    router.get("/users")
 
     
     // definindo que https para root/app sejam tratadas pelo router

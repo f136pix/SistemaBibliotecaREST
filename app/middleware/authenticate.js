@@ -21,9 +21,8 @@ function authenticate(req, res, next) {
                 console.log("Token autorizado")
                 const uid = decodedToken.uid;
                 const userDoc = await db.collection('users').doc(uid).get() // current user doc por id
-                req.session.userUidName = uid
-                req.session.userName = userDoc._fieldsProto.nome.stringValue
-                req.session.userEmail = userDoc._fieldsProto.email.stringValue
+                res.locals.uid = uid;
+                req.session.userData = userDoc._fieldsProto
                 next();
             })
             .catch((error) => {
@@ -31,6 +30,7 @@ function authenticate(req, res, next) {
                 res.redirect(REDIRECT_LOGIN)
             });
     } catch (err) { // tratando sessão destroyed() / não autenticada
+        console.log('Não autenticado')
         req.session.error = "Você não está autenticado"
         res.redirect(REDIRECT_LOGIN)
     }
